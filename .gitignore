@@ -1,3 +1,4 @@
 .pio
 .venv
 lib
+include/mapComponents.h
