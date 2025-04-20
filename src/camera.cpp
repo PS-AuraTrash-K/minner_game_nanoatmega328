@@ -4,7 +4,7 @@
 #include "camera.h"
 #include "variables.h"
 
-void Camera::moveCamera(int _x, int _y) {
+void Camera::moveCamera(const int _x, const int _y) {
     if (this->x + _x >= 0 && this->x + _x <= MAP_SIZE_X - CAM_SIZE_X && _x != 0)
     {
         this->x += _x;

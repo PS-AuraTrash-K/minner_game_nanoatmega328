@@ -25,7 +25,13 @@ void Player::movePlayer() {
     {
         this->direction = static_cast<Direction>(input);
         this->isMoving = true;
-        if (!(this->gb->isFree(this->getX() + _x, this->getY() + _y))) return;
+        if (this->walls_renderer->checkMatrix(
+            32,
+            this->getX() + _x,
+            this->getY() + _y,
+            [](GameBoy*, int, int){}
+        )) return;
+        //if (!(this->gb->isFree(this->getX() + _x, this->getY() + _y))) return;
         this->x += _x;
         this->y += _y;
     };

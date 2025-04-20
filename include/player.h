@@ -2,9 +2,10 @@
 // Created by tarshpatar on 07.04.25.
 //
 #pragma once
+#include <abstractMapElement.h>
+
 #include "camera.h"
 #include <GameBoy.h>
-
 enum Direction {
     DIR_UP = 3,
     DIR_DOWN = 6,
@@ -24,8 +25,9 @@ struct Player {
     bool isVisible = true;
     bool isMoving = false;
 
-    Camera *cam;
-    GameBoy *gb;
+    Camera *cam{};
+    GameBoy *gb{};
+    AbstractMapElement<uint32_t> *walls_renderer{};
 
     int getX() const;
     int getY() const;

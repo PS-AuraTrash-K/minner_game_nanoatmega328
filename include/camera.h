@@ -20,3 +20,4 @@ struct Camera {
 
     void moveCamera(int _x, int _y);
 };
+

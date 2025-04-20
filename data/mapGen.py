@@ -29,6 +29,33 @@ def create_array(name, target):
 
     file.write('\n\t};\n')
 
+def create_coordinates(name, target):
+    f = open(path + "/maps/map.txt", "r")
+    file.write('\n\tconstexpr char ' + name + '[] PROGMEM = {\n')
+
+    count = 0
+    x,y = 0,0
+
+
+    for line in f:
+        count += 1
+        temp = line.split(" ")
+        byte = []
+        for bit in temp:
+            if bit[len(bit) -1] == "\n":
+                bit = bit[:-1]
+
+            if bit == target:
+                byte.append("\t\t" + str(x) + ", " + str(y) + ",\n")
+
+            x += 1
+
+        file.write(''.join(str(x) for x in byte))
+        y += 1
+        x = 0
+    file.write('\t\t// x, y')
+    file.write('\n\t};\n')
+
 
 if __name__ == '__main__':
     file = open("include/mapComponents.h", "w")
@@ -42,6 +69,6 @@ namespace Map
 {""")
 
     create_array("walls", "S")
-    create_array("chests", "C")
+    create_coordinates("chests", "C")
 
     file.write('}\n')
